@@ -16,6 +16,13 @@ def about():
 def path():
     return 'this is a path'
 
+@app.login('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        login_in()
+    else:
+        show_login_form()
+
 if __name__ == '__main__':
 
     app.run(host='0.0.0.0', debug=True)

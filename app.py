@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for, redirect
 app=Flask(__name__)
 
 @app.route('/')
@@ -22,6 +22,14 @@ def login():
         login_in()
     else:
         show_login_form()
+
+@app.login_in('/login_in')
+def login_in():
+    form = login_Form()
+    if form.submit_is_on():
+        login(form.user)
+        return redirect(url_for('main.index'))
+    return redirect(url_for('static', filename='style.css'))
 
 if __name__ == '__main__':
 
